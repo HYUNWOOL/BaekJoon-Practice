@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+ 
+long long int one[91];  
+long long int zero[91];   
+ 
+long long int pinary(int n, int a) {
+    // 재귀 탈출 조건
+    if (n == 1)                        return 1;    
+    if ((a == 1 && one[n] != 0))    return one[n];
+    if ((a == 0 && zero[n] != 0))    return zero[n];
+    // 수행
+    long long int res;
+    if (a == 1)    res = one[n] = pinary(n - 1, 0);                       
+    if (a == 0)    res = zero[n] = pinary(n - 1, 0) + pinary(n - 1, 1);    
+    return res;
+}
+ 
+int main() {
+    int N;
+    cin >> N;
+    cout << pinary(N, 1);
+    return 0;
+}
