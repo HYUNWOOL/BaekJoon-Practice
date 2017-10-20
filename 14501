@@ -1,0 +1,19 @@
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+int n, dp[16], t[16], p[16];
+int func(int pos) {
+    if (pos == n + 1)return 0;
+    if (pos > n + 1)return -987654321;
+    int &ret = dp[pos];
+    if (ret != -1)return ret;
+    return ret = max(func(pos + 1), func(pos + t[pos]) + p[pos]);
+}
+int main() {
+    scanf("%d", &n);
+    memset(dp, -1, sizeof(dp));
+    for (int i = 1; i <= n; i++) 
+        scanf("%d%d", &t[i], &p[i]);
+    printf("%d\n", func(1));
+    return 0;}
