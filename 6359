@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int T, a, cnt = 0;
+	int d[101] = { 0 };
+	int acnt[101];
+	cin >> T;
+
+	for (int i = 0; i < T; i++) {
+		cin >> a;
+		for (int x = 1; x <= a; x++) {
+			for (int y = 1; x*y <= a; y++) {
+				if (d[x*y] == 0) {
+					d[x*y] = 1;
+				}
+				else
+					d[x*y] = 0;
+			}
+		}
+		for (int z = 0; z <= a; z++) {
+			if (d[z] == 1)
+				cnt++;
+		}
+		acnt[i] = cnt;
+	}
+	for (int i = 0; i < T; i++)
+		cout << acnt[i] << endl;
+	return 0;
+}
